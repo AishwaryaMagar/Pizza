@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<nav class="navbar navbar-light bg-light">
+    <a href="http://127.0.0.1:8000/userorder/" name="wel" class="navbar-brand " style="font-size:25px;">Welcome</a>
+    <a class="nav-item" name="myorder" style="color: rgb(24, 22, 20);text-decoration: none;font-size:50px ; text-align: center;" href="/userorder/">My Orders</a>
+    <a href="/customer/welcome/" name="bk" class="btn btn-danger">Back</a>
+</nav>
+
+{% for order in orders %}
+<div style="margin: 40px;" class="alert alert-warning" role="alert">
+    <p style="text-align: center;">{{order.username}}</p>
+    <p style="text-align: center;">{{order.phoneno}}</p>
+    <p style="text-align: center;">{{order.email}}</p>
+    <p style="text-align: center;">{{order.address}}</p>
+    <p style="text-align: center;">{{order.ordereditems}}</p>
+    <p style="text-align: center;">Order Status : {{order.status}}</p>
+</div>
+
+{% endfor %}
+
+
+{% endblock %}

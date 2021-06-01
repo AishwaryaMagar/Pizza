@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand " style="font-size:25px;">Welcome {{ username }}</a>
+    <a class="nav-item" name="view" style="color: rgb(250, 92, 18);text-decoration: none;font-size:50px ; text-align: center;" href="/userorder/">View My Orders</a>
+    <a href="/userlogout/" name="logout" class="btn btn-danger">Logout</a>
+</nav>
+{% for message in messages %}
+<p style="color: rgb(20, 4, 37);text-align: center; font-size: 25px;">{{message}}</p>
+{% endfor %}
+<br>
+<form method="POST" action="/placeorder/">
+    {% csrf_token %}
+<div class="container" style="margin: auto;width: 600px; font-size: 18px;">
+    <table style="width: 100%;">
+        <tr>
+            <th>Pizza</th>
+            <th>Price</th>
+            <th>Quantity</th>
+        </tr>
+        {% for pizza in pizzas %}
+        <tr>
+            <td>{{pizza.name}}</td>
+            <td>{{pizza.price}}</td>
+            <td><input type="number" min="0" value="0"  name="{{pizza.id}}"  style="width: 60px;" name="quantity"></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <input type="text" name="address" placeholder="Address" style="margin-top: 110px;width: 400px;">
+    <input type="submit" style="float: right; margin-top: 100px; font-size: 20px;" class="btn btn-outline-success" value="place order" name="placeorder">
+</div>
+</form>
+{% endblock %}

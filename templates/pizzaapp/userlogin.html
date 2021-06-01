@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<div class="container" style="background-color: orange;padding: 30px; width: 400px;height: 250px;margin-top: 230px;">
+    <h1 name= "headingLog" style="text-align: center;color: white;">Login</h1>
+    <form method="POST" action="/customer/authenticate/">
+        {% csrf_token %}
+        <input class="form-control" style="margin-bottom: 10px;" type="text" name="username" placeholder="Username">
+        <input class="form-control" style="margin-bottom: 10px;" type="password" name="password" placeholder="Password">
+        <input class="btn btn-success" style="margin-bottom: 10px; display: block;margin: auto;" type="submit" value="Login" name="logBtn">
+    </form>
+
+
+</div>
+
+{% for message in messages %}
+<p style="color: red; text-align: center;">{{message}}</p>
+{% endfor %}
+
+{% endblock %}

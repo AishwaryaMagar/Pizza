@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" style="font-size:25px;">Welcome Admin</a>
+    <a href="/adminorder/" name="adminorder" class="nav-item" style="text-decoration: none;color: rgb(245, 82, 7);font-size:50px; text-align: center;">All Orders</a>
+    <!-- <form class="form-inline">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form> -->
+
+    <a class="btn btn-danger" name="backbtn" id="back" href="/admin/homepage/">Back</a>
+</nav>
+
+
+
+{% for order in orders %}
+<div style="margin: 40px;" class="alert alert-warning" role="alert">
+    <p style="text-align: center;">{{order.username}}</p>
+    <p style="text-align: center;">{{order.phoneno}}</p>
+    <p style="text-align: center;">{{order.email}}</p>
+    <p style="text-align: center;">{{order.address}}</p>
+    <p style="text-align: center;">{{order.ordereditems}}</p>
+    <p style="text-align: center;">Order Status : {{order.status}}</p>
+    <div class="container" style="width: 200px; margin: auto;">
+        <a href="/acceptorder/{{order.id}}/" style="display: inline;" class="btn btn-success">Accept</a>
+        <a href="/declineorder/{{order.id}}" style="display: inline;" class="btn btn-danger">Decline</a>
+    </div>
+</div>
+
+{% endfor %}
+
+
+{% endblock %}

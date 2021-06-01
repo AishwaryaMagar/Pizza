@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" style="font-size:25px;">Welcome Admin</a>
+    <a href="/adminorder/" class="nav-item" name="alloredr" style="text-decoration: none;color: rgb(245, 82, 7);font-size:50px; text-align: center;">All Orders</a>
+    <!-- <form class="form-inline">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form> -->
+
+    <a class="btn btn-danger" name="log" id="logout" href="/admin/logout/">Logout</a>
+</nav>
+<br>
+<form action="/addpizza/" method="POST">
+    {% csrf_token %}
+    <div class="container" style="width: 530px; display: block;margin: auto;">
+        <input type="text" placeholder="Name" class="form-control" name="Pizza" style="width: 200px;display: inline;margin: auto;">
+        <input type="text" placeholder="Price" class="form-control" name="Price" style="width: 200px;display: inline;margin: auto;">
+        <input style="display: inline" type="submit" value="Add" name="add" class="btn btn-success">
+        
+    </div>
+</form>
+
+<div class="container" style="width: 50%;display: block;margin-left: auto;margin-right: auto;margin-top: 50px;font-size: 18px;">
+    <table style="width: 100%;", class ="center">
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Delete</th>
+        </tr>
+        {% for pizza in pizzas %}
+        <tr>
+            <td>{{pizza.name}}</td>
+            <td>{{pizza.price}}</td>
+            <td><a href="/deletepizza/{{ pizza.id }}" name ="del" class="btn btn-danger">Delete
+            </a></td>
+        </tr>
+        {% endfor %}
+    
+    </table>
+</div>
+
+{% endblock %}
