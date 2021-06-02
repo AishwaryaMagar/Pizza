@@ -29,7 +29,7 @@ SECRET_KEY = '8@iitdby_7qmn8_a8*(@lbk-**!p3_3afqhh10u2ucu9_1vfo^'
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1','pizza-ordering-system1.herokuapp.com']
 
 
 # Application definition
